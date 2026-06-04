@@ -1,0 +1,27 @@
+name: Daily IG Post
+
+on:
+  schedule:
+    - cron: "0 13 * * *"   # 09:00 America/New_York (EDT)
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Set to 1 to build the container without publishing"
+        required: false
+        default: "0"
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Post today's scheduled content
+        run: node automation/post-today.js
+        env:
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          ASSET_BASE_URL: https://cdn.jsdelivr.net/gh/designsdeyoung/localtrafficai-social@main/content/assets
+          DRY_RUN: ${{ github.event.inputs.dry_run }}

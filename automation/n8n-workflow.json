@@ -1,0 +1,161 @@
+{
+  "name": "Local Traffic AI - IG Auto Poster",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "trigger-daily-9am",
+      "name": "Daily 9am ET",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-820, 300],
+      "notes": "Fires once a day at 09:00. Server timezone should be set to America/New_York in n8n settings, or convert in the cron line."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pull the post scheduled for today out of calendar.json.\n// calendar.json is mounted/available to n8n. Two supported sources:\n//   A) Read from disk via the Read Binary File node (swap this node out), or\n//   B) Paste the calendar contents into a workflow static-data / env var.\n// This Code node expects the calendar JSON to arrive on $json.calendar, or\n// falls back to the CALENDAR_JSON env var so the workflow is portable.\n\nconst raw = $json.calendar || $env.CALENDAR_JSON;\nif (!raw) {\n  throw new Error('No calendar found. Wire a Read File node into this node, or set CALENDAR_JSON env.');\n}\nconst cal = typeof raw === 'string' ? JSON.parse(raw) : raw;\n\n// Today's date in the calendar timezone (America/New_York), YYYY-MM-DD.\nconst tz = (cal.meta && cal.meta.timezone) || 'America/New_York';\nconst today = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());\n\nconst post = (cal.posts || []).find((p) => p.date === today);\nif (!post) {\n  // No post today. Stop quietly.\n  return [];\n}\n\nconst site = (cal.meta && cal.meta.site) || 'https://localtrafficai.com';\nconst id = String(post.id).padStart(2, '0');\nconst assetFile = `${post.date}_post-${id}_${post.pillar}.png`;\n\n// Full IG caption: body + a blank line + hashtags.\nconst caption = `${post.caption}\\n\\n${(post.hashtags || []).join(' ')}`;\n\n// Public URL where the rendered asset is hosted. The IG Graph API needs a\n// publicly reachable image_url. Set ASSET_BASE_URL to wherever you host the\n// files in content/assets/ (S3, Cloudflare R2, a static host, etc.).\nconst assetBase = ($env.ASSET_BASE_URL || 'https://CHANGE-ME.example.com/assets').replace(/\\/$/, '');\nconst image_url = `${assetBase}/${encodeURIComponent(assetFile)}`;\n\nreturn [{ json: { post_id: post.id, date: post.date, pillar: post.pillar, caption, image_url, asset_file: assetFile, site } }];"
+      },
+      "id": "pick-todays-post",
+      "name": "Pick Today's Post",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-600, 300],
+      "notes": "Finds the calendar entry whose date == today (ET). Returns empty (stops) if nothing is scheduled today."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "id": "has-post",
+              "leftValue": "={{ $json.image_url }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEmpty" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-post-today",
+      "name": "Post Scheduled Today?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-380, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_BUSINESS_ID }}/media",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "image_url", "value": "={{ $json.image_url }}" },
+            { "name": "caption", "value": "={{ $json.caption }}" },
+            { "name": "access_token", "value": "={{ $env.IG_ACCESS_TOKEN }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "create-media-container",
+      "name": "Create Media Container",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-140, 220],
+      "notes": "Step 1 of IG publishing: create a media container. Returns an id (creation_id) used to publish. image_url must be publicly reachable by Facebook's servers."
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "wait-container-ready",
+      "name": "Wait 30s (container processing)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [120, 220],
+      "webhookId": "lta-ig-wait",
+      "notes": "IG needs a moment to fetch and process the image into the container before publish. 30s is safe for a single image. Poll the container status endpoint instead if you want to be precise."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/{{ $env.IG_BUSINESS_ID }}/media_publish",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $('Create Media Container').item.json.id }}" },
+            { "name": "access_token", "value": "={{ $env.IG_ACCESS_TOKEN }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "publish-media",
+      "name": "Publish to Instagram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [340, 220],
+      "notes": "Step 2: publish the container. Counts against the 25-posts / 24h limit per IG account. Returns the published media id."
+    },
+    {
+      "parameters": {
+        "jsCode": "const media = $json;\nconst meta = $('Pick Today\\'s Post').item.json;\nreturn [{ json: { status: 'posted', published_media_id: media.id, post_id: meta.post_id, date: meta.date, pillar: meta.pillar, posted_at: new Date().toISOString() } }];"
+      },
+      "id": "log-success",
+      "name": "Log Success",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [560, 220],
+      "notes": "Shape a clean success record. Wire this into a Google Sheet / Airtable / DB append node to keep a posting log if you want one."
+    },
+    {
+      "parameters": {},
+      "id": "no-post-today",
+      "name": "Nothing Scheduled",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [-140, 420],
+      "notes": "Calendar has no entry for today. End cleanly."
+    }
+  ],
+  "connections": {
+    "Daily 9am ET": {
+      "main": [[{ "node": "Pick Today's Post", "type": "main", "index": 0 }]]
+    },
+    "Pick Today's Post": {
+      "main": [[{ "node": "Post Scheduled Today?", "type": "main", "index": 0 }]]
+    },
+    "Post Scheduled Today?": {
+      "main": [
+        [{ "node": "Create Media Container", "type": "main", "index": 0 }],
+        [{ "node": "Nothing Scheduled", "type": "main", "index": 0 }]
+      ]
+    },
+    "Create Media Container": {
+      "main": [[{ "node": "Wait 30s (container processing)", "type": "main", "index": 0 }]]
+    },
+    "Wait 30s (container processing)": {
+      "main": [[{ "node": "Publish to Instagram", "type": "main", "index": 0 }]]
+    },
+    "Publish to Instagram": {
+      "main": [[{ "node": "Log Success", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/New_York"
+  },
+  "staticData": null,
+  "meta": {
+    "description": "Pulls the post scheduled for today from calendar.json, finds its rendered asset, and publishes it to an Instagram Business account via the Instagram Graph API (two-step container then publish). Stops cleanly on days with no scheduled post. Env vars required: IG_BUSINESS_ID, IG_ACCESS_TOKEN, ASSET_BASE_URL, and either CALENDAR_JSON or a Read File node feeding $json.calendar."
+  },
+  "tags": [{ "name": "instagram" }, { "name": "localtrafficai" }]
+}

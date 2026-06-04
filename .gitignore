@@ -1,0 +1,12 @@
+# secrets
+.env
+.env.local
+
+# generated assets and manifest (regenerate from calendar.json)
+content/assets/*.png
+content/assets/*.jpg
+content/assets/manifest.json
+
+# os / editor
+.DS_Store
+node_modules/
