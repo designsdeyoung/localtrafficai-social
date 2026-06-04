@@ -21,7 +21,7 @@ function todayET() {
 
 async function main() {
   const cal = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "content", "calendar.json"), "utf8"));
-  const today = todayET();
+  const today = process.env.TEST_DATE || todayET();
   const post = (cal.posts || []).find((p) => p.date === today);
   if (!post) {
     console.log("Nothing scheduled for", today);
