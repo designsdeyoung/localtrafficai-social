@@ -1,6 +1,6 @@
 const test=require('node:test');
 const assert=require('node:assert/strict');
-const {todayET,redact,verifyImage,publishEntry}=require('./post-today');
+const {todayET,redact,verifyImage,publishEntry,planForDate,duePost,recentlyPublished,burstPlan}=require('./post-today');
 const fresh=()=>({status:'prepared',created_at:'2026-09-26T12:00:00Z',image_url:'https://example.com/post.jpg',post:{date:'2026-09-26',caption:'A test caption'}});
 const noWait=async()=>{};
 test('Eastern date handles midnight and both DST seasons',()=>{
@@ -53,3 +53,46 @@ test('public image check rejects HTML and accepts JPEG bytes',async()=>{
   await verifyImage('https://example.com',async()=>({ok:true,arrayBuffer:async()=>b}),noWait);
 });
 test('errors redact credentials',()=>assert.equal(redact('token SECRET access_token=OTHER&x=1','SECRET'),'token [REDACTED] access_token=[REDACTED]&x=1'));
+test('burst schedules nine distinct slots and content items',()=>{
+  const plan=burstPlan();
+  assert.equal(plan.length,9);
+  assert.equal(new Set(plan.map(p=>p.key)).size,9);
+  assert.equal(new Set(plan.map(p=>p.title)).size,9);
+  assert.deepEqual(plan.map(p=>p.sequence),[1,2,3,4,5,6,7,8,9]);
+  for(const day of ['2026-09-27','2026-09-28','2026-09-29']) assert.equal(plan.filter(p=>p.date===day).length,3);
+});
+test('burst boundaries automatically restore daily publishing with next content',()=>{
+  assert.equal(planForDate('2026-09-26').sequence,0);
+  assert.equal(planForDate('2026-09-30').sequence,10);
+  assert.equal(planForDate('2026-10-01').sequence,11);
+  for(const day of ['2026-09-26','2026-09-30','2027-09-27']) assert.throws(()=>planForDate(day,'afternoon'),/only enabled/);
+  assert.equal(duePost(new Date('2026-09-30T23:17:00Z')).slot,'morning');
+  assert.equal(duePost(new Date('2027-09-27T23:17:00Z')).slot,'morning');
+});
+test('due slot follows Eastern clock and never backfills earlier slots',()=>{
+  assert.equal(duePost(new Date('2026-09-27T13:16:59Z')),null);
+  assert.equal(duePost(new Date('2026-09-27T13:17:00Z')).key,'2026-09-27');
+  assert.equal(duePost(new Date('2026-09-27T18:16:59Z')).slot,'morning');
+  assert.equal(duePost(new Date('2026-09-27T18:17:00Z')).key,'2026-09-27-afternoon');
+  assert.equal(duePost(new Date('2026-09-27T23:17:00Z')).key,'2026-09-27-evening');
+  assert.equal(duePost(new Date('2026-09-28T03:50:00Z')).key,'2026-09-27-evening');
+  assert.equal(duePost(new Date('2026-12-26T13:17:00Z')),null);
+  assert.equal(duePost(new Date('2026-12-26T14:17:00Z')).slot,'morning');
+});
+test('spacing blocks bunched posts and fails closed on missing timestamps',()=>{
+  const now=new Date('2026-09-27T18:17:00Z');
+  const state={posts:{'2026-09-27':{status:'published',published_at:'2026-09-27T16:00:00Z'}}};
+  assert.equal(recentlyPublished(state,now),true);
+  state.posts['2026-09-27'].published_at='2026-09-27T15:17:00Z';
+  assert.equal(recentlyPublished(state,now),false);
+  delete state.posts['2026-09-27'].published_at;
+  assert.equal(recentlyPublished(state,now),true);
+  state.posts['2026-09-27'].status='prepared';
+  assert.equal(recentlyPublished(state,now),false);
+});
+test('legacy date journal keys still protect morning posts from duplicates',()=>{
+  assert.equal(planForDate('2026-09-26').key,'2026-09-26');
+  assert.equal(planForDate('2026-09-27').key,'2026-09-27');
+  assert.throws(()=>planForDate('2026-02-30'),/Invalid/);
+  assert.throws(()=>planForDate('2026-09-27','night'),/only enabled/);
+});

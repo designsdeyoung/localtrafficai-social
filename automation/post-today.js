@@ -6,6 +6,42 @@ const ROOT = path.resolve(__dirname, '..');
 const STATE = 'content/publishing-state.json';
 const GRAPH = 'https://graph.facebook.com/v21.0';
 const wait = ms => new Promise(r => setTimeout(r, ms));
+const BURST_START = '2026-09-27';
+const BURST_END = '2026-09-29';
+const SLOTS = ['morning','afternoon','evening'];
+const MIN_GAP_MS = 3 * 60 * 60 * 1000;
+function planForDate(date,slot='morning') {
+  const day=Date.parse(`${date}T00:00:00Z`);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isFinite(day) || new Date(day).toISOString().slice(0,10)!==date) throw new Error('Invalid posting date.');
+  const burst=date>=BURST_START && date<=BURST_END;
+  const slotIndex=SLOTS.indexOf(slot);
+  if(slotIndex<0 || (!burst && slotIndex!==0)) throw new Error('Extra posting slots are only enabled September 27-29, 2026.');
+  const offset=(day-Date.parse('2026-09-26T00:00:00Z'))/86400000;
+  const extraDays=Math.max(0,Math.min(3,(day-Date.parse(`${BURST_START}T00:00:00Z`))/86400000));
+  return {date,slot,key:slotIndex===0?date:`${date}-${slot}`,sequence:offset+2*extraDays+slotIndex,time_et:['09:17','14:17','19:17'][slotIndex]};
+}
+function duePost(now=new Date()) {
+  const date=todayET(now);
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hourCycle:'h23',hour:'2-digit',minute:'2-digit'}).formatToParts(now);
+  const minutes=Number(parts.find(p=>p.type==='hour').value)*60+Number(parts.find(p=>p.type==='minute').value);
+  if(minutes<557) return null;
+  const burst=date>=BURST_START && date<=BURST_END;
+  return planForDate(date,burst && minutes>=1157?'evening':burst && minutes>=857?'afternoon':'morning');
+}
+function recentlyPublished(state,now=new Date()) {
+  return Object.values(state.posts).some(p=>p.status==='published' && (!p.published_at || !Number.isFinite(Date.parse(p.published_at)) || now.getTime()-Date.parse(p.published_at)<MIN_GAP_MS));
+}
+function burstPlan() {
+  const bank=JSON.parse(fs.readFileSync(path.join(ROOT,'content/evergreen-posts.json'),'utf8'));
+  return ['2026-09-27','2026-09-28','2026-09-29'].flatMap(date=>SLOTS.map(slot=>{
+    const plan=planForDate(date,slot);
+    return {...plan,title:bank[plan.sequence % bank.length].title};
+  }));
+}
+function summary(message) {
+  console.log(message);
+  if(process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,message+'\n');
+}
 function todayET(now = new Date()) {
   const p = new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);
   const get = k => p.find(x => x.type === k).value;
@@ -79,7 +115,7 @@ async function publishEntry(entry,{api,save,verify,pause=wait,ig}) {
   for(let i=0;i<30;i++) {
     const s=await api(entry.container_id,{fields:'status_code'});
     if(s.status_code==='FINISHED'){ready=true;break;}
-    if(s.status_code==='PUBLISHED'){entry.status='published';entry.reconciled=true;await save();return entry;}
+    if(s.status_code==='PUBLISHED'){entry.status='published';entry.published_at=new Date().toISOString();entry.reconciled=true;await save();return entry;}
     if(['ERROR','EXPIRED'].includes(s.status_code)) throw new Error(`Instagram container ${s.status_code}. Nothing new was published.`);
     await pause(4000);
   }
@@ -96,8 +132,16 @@ async function main() {
   if(live && date!==todayET()) throw new Error('Backdated live posts are disabled. Use preview mode.');
   if(live && (process.env.GITHUB_ACTIONS!=='true' || process.env.GITHUB_REF!=='refs/heads/main' || process.env.GITHUB_REPOSITORY!=='designsdeyoung/localtrafficai-social')) throw new Error('Live publishing requires GitHub Actions on designsdeyoung/localtrafficai-social main.');
   const output=path.join(ROOT,'.output');fs.mkdirSync(output,{recursive:true});
-  const render=()=>execFileSync('python',['automation/render-post.py','--date',date,'--output','.output'],{cwd:ROOT,stdio:'inherit'});
-  if(!live){render();console.log('Preview complete. No Instagram requests or repository writes.');return;}
+  const plan=live?duePost():planForDate(date,process.env.TEST_SLOT || 'morning');
+  if(!plan){summary('Before 09:17 Eastern. No post is due.');return;}
+  const render=()=>execFileSync('python',['automation/render-post.py','--date',plan.date,'--sequence',String(plan.sequence),'--output','.output'],{cwd:ROOT,stdio:'inherit'});
+  if(!live){
+    render();
+    const schedule=burstPlan();
+    fs.writeFileSync(path.join(output,'burst-plan.json'),JSON.stringify(schedule,null,2)+'\n');
+    summary('### Three-day Instagram burst\n\nSeptember 27-29, 2026: three different posts daily. September 30: return to one daily post.\n\n| Date | Eastern time | Post |\n| --- | --- | --- |\n'+schedule.map(p=>`| ${p.date} | ${p.time_et} | ${p.title} |`).join('\n')+'\n\nScheduled times are approximate. At least three hours between successful posts; delayed slots are skipped, never mass-backfilled.\n\nPreview complete. No Instagram requests or repository writes.');
+    return;
+  }
   const ig=process.env.IG_BUSINESS_ID;
   if(!ig || !/^\d+$/.test(ig)) throw new Error('Missing or invalid IG_BUSINESS_ID in repository Actions secrets.');
   const profile=await graph(ig,{fields:'id,username'});
@@ -109,15 +153,17 @@ async function main() {
   if(state.version!==1 || !state.posts) throw new Error('Invalid publishing-state.json.');
   const services={api:graph,save:()=>saveState(state),verify:verifyImage,ig};
   for(const old of Object.values(state.posts)) if(old.status==='publishing') await publishEntry(old,services);
-  let entry=state.posts[date];
-  if(entry?.status==='published'){console.log('Already posted for',date,'media:',entry.media_id||entry.container_id);return;}
+  let entry=state.posts[plan.key];
+  if(entry?.status==='published'){summary(`Already posted for ${plan.key}, media: ${entry.media_id||entry.container_id}`);return;}
+  if(recentlyPublished(state)){summary(`Skipping ${plan.key}: keep at least three hours between successful posts (or resolve a missing publication timestamp).`);return;}
   if(!entry) {
     render();
     const post=JSON.parse(fs.readFileSync(path.join(output,'post.json'),'utf8'));
-    const assetPath=`content/assets/autopilot/${date}.jpg`;
+    Object.assign(post,{slot:plan.slot,posting_key:plan.key,sequence:plan.sequence});
+    const assetPath=`content/assets/autopilot/${plan.key}.jpg`;
     fs.mkdirSync(path.dirname(path.join(ROOT,assetPath)),{recursive:true});
     fs.copyFileSync(path.join(output,'post.jpg'),path.join(ROOT,assetPath));
-    entry={status:'prepared',created_at:new Date().toISOString(),post,asset_path:assetPath};state.posts[date]=entry;
+    entry={status:'prepared',created_at:new Date().toISOString(),post,asset_path:assetPath};state.posts[plan.key]=entry;
     const sha=saveState(state,assetPath);
     entry.image_url=`https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/${sha}/${assetPath}`;
     saveState(state);
@@ -126,8 +172,7 @@ async function main() {
     saveState(state);
   }
   const result=await publishEntry(entry,services);
-  console.log('PUBLISHED',date,'media:',result.media_id||result.container_id);
-  if(process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`Published @localtrafficai for ${date}. Media: ${result.media_id||'reconciled from container'}\n`);
+  summary(`Published @localtrafficai for ${plan.key}. Media: ${result.media_id||'reconciled from container'}`);
 }
 if(require.main===module) main().catch(e=>{
   // Avoid printing subprocess output that may contain credentialed git URLs.
@@ -136,4 +181,4 @@ if(require.main===module) main().catch(e=>{
   if(process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`Instagram autopilot needs attention: ${message}\n`);
   process.exitCode=1;
 });
-module.exports={todayET,redact,verifyImage,publishEntry};
+module.exports={todayET,redact,verifyImage,publishEntry,planForDate,duePost,recentlyPublished,burstPlan};

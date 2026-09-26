@@ -24,9 +24,9 @@ def wrap(draw,text,f,width):
             line=word
     if line: lines.append(line)
     return lines
-def select_post(date):
+def select_post(date,sequence=None):
     bank=json.loads((ROOT/'content/evergreen-posts.json').read_text())
-    offset=(dt.date.fromisoformat(date)-dt.date(2026,9,26)).days
+    offset=(dt.date.fromisoformat(date)-dt.date(2026,9,26)).days if sequence is None else sequence
     item=bank[offset % len(bank)]
     caption=item['title']+'\n\n'+'\n'.join(item['tips'])+'\n\n'+item['cta']
     caption+='\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing'
@@ -69,4 +69,5 @@ def render(post,output):
     return output/'post.jpg'
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--date',required=True);p.add_argument('--output',default='.output')
-    a=p.parse_args();print('Generated',render(select_post(a.date),a.output),'for',a.date)
+    p.add_argument('--sequence',type=int)
+    a=p.parse_args();print('Generated',render(select_post(a.date,a.sequence),a.output),'for',a.date)
