@@ -8,8 +8,8 @@ Base commit: 5f94e9efbb9a33930f109969ae52dc86bb28a21f.
 The old GitHub Actions job referenced a 120-post calendar but the repository
 contained only post-01.png through post-06.png. Runs succeeded through June 7;
 the first failing run was June 8. The August 3 log explicitly reports an
-Instagram media-download error for the absent post-63.png. No later runs were
-returned. Old June logs had expired, so the exact first error cannot be read.
+Instagram media-download error for the absent post-63.png. GitHub subsequently disabled the workflow after 60 days without repository
+activity, confirmed in the workflow UI. Old June logs had expired, so the exact first error cannot be read.
 The separate n8n template is not the publisher used by these GitHub runs.
 
 ## What this patch changes
@@ -29,8 +29,9 @@ The separate n8n template is not the publisher used by these GitHub runs.
 - Waits for FINISHED, fails on ERROR/EXPIRED, and never publishes after a timeout.
 - Skips dates already recorded as published, serializes runs, and never backfills.
 - Replaces the exhausted calendar with rolling content and schedules at about
-  9:17 AM Eastern. Two UTC slots handle daylight saving changes; the second
-  is skipped. GitHub can delay scheduled execution.
+  9:17 AM Eastern. Two UTC slots handle daylight saving changes and delays;
+  the persistent journal skips any second attempt on an already published date.
+  GitHub can delay scheduled execution, so runs after 9 AM remain eligible.
 - Pushes and pull requests run offline checks only. Manual preview is the default.
 - Failed runs and actionable errors appear in GitHub Actions and its run summary.
   Enable GitHub Actions failure notifications for email delivery if desired.
