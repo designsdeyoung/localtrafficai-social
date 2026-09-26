@@ -2,7 +2,7 @@ name: Daily IG Post
 
 on:
   schedule:
-    # Both UTC slots cover daylight saving changes; only 09:xx ET publishes.
+    # Both UTC slots cover daylight saving changes; publish at or after 09:00 ET.
     - cron: '17 13,14 * * *'
   workflow_dispatch:
     inputs:
@@ -72,10 +72,10 @@ jobs:
         id: clock
         shell: bash
         run: |
-          if [[ "$EVENT_NAME" != "schedule" || "$(TZ=America/New_York date +%H)" == "09" ]]; then
+          if [[ "$EVENT_NAME" != "schedule" || "$(TZ=America/New_York date +%H)" > "08" ]]; then
             echo 'run=true' >> "$GITHUB_OUTPUT"
           else
-            echo 'Outside 09:xx Eastern. The other UTC slot handles today.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Before 09:00 Eastern. The other UTC slot handles today.' >> "$GITHUB_STEP_SUMMARY"
           fi
         env:
           EVENT_NAME: ${{ github.event_name }}
