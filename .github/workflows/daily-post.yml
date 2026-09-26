@@ -57,7 +57,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: instagram-preview-${{ github.run_id }}
+          if-no-files-found: error
           path: .output/
+          include-hidden-files: true
           retention-days: 14
 
   publish:
@@ -106,5 +108,6 @@ jobs:
         with:
           name: instagram-run-${{ github.run_id }}
           path: .output/
+          include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 14
