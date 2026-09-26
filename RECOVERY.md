@@ -1,7 +1,24 @@
 # LocalTrafficAI Instagram recovery
 
 Prepared September 26, 2026 for designsdeyoung/localtrafficai-social.
-Base commit: 5f94e9efbb9a33930f109969ae52dc86bb28a21f.
+Repair deployed and Instagram publication verified September 26, 2026.
+
+## Temporary catch-up schedule
+
+- September 27-29, 2026: three distinct posts per day, around 9:17 AM,
+  2:17 PM, and 7:17 PM America/New_York (Eastern time).
+- Nine scheduled posts total, using content bank entries 2-10. No additional
+  paid generation services or advertising spend are introduced.
+- September 30 automatically returns to one morning post per day, starting
+  with content bank entry 11. The bank repeats after 30 posts, not 30 days.
+- Additional September cron triggers have no year field; the publisher's fixed
+  2026 date window prevents extra posts in future years.
+- Each slot has its own journal key and image. The morning retains the legacy
+  date-only key so existing published entries still prevent duplicates.
+- At least three hours between successful publications. A delayed run handles
+  only the latest due slot; missed earlier slots are skipped, never backfilled.
+- Manual preview can select a date and slot. Live mode ignores preview slots
+  and uses the current Eastern clock. Run summaries include the nine-post plan.
 
 ## What stopped
 
@@ -16,7 +33,7 @@ The separate n8n template is not the publisher used by these GitHub runs.
 
 - Generates a fresh 1080 x 1350 RGB JPEG for every posting date before publishing.
 - Uses 30 reviewed evergreen tips in a rolling sequence. The sequence repeats
-  every 30 days; it is not an unlimited source of novel AI-written material.
+  every 30 posts; it is not an unlimited source of novel AI-written material.
   Update content/evergreen-posts.json to keep the channel editorially fresh.
 - Uses navy, teal, and blue branded graphics with plain ASCII copy.
 - No Higgsfield, OpenAI, or other paid generation API is required.
@@ -27,7 +44,7 @@ The separate n8n template is not the publisher used by these GitHub runs.
   reconcile against recent Instagram media. If still uncertain, publishing stops
   for human review rather than risking duplicates.
 - Waits for FINISHED, fails on ERROR/EXPIRED, and never publishes after a timeout.
-- Skips dates already recorded as published, serializes runs, and never backfills.
+- Skips slots already recorded as published, serializes runs, and never backfills.
 - Replaces the exhausted calendar with rolling content and schedules at about
   9:17 AM Eastern. Two UTC slots handle daylight saving changes and delays;
   the persistent journal skips any second attempt on an already published date.
@@ -69,7 +86,8 @@ Actions secrets IG_BUSINESS_ID and IG_ACCESS_TOKEN are reused.
 A repository repair cannot silently renew an expired Meta authorization. If the
 live run reports code 190, reconnect the Meta app for the correct Instagram
 business account and replace IG_ACCESS_TOKEN through GitHub's secure secrets UI.
-The token's live validity has not been tested from this environment.
+The existing token successfully published media 18084645398700183 on September
+26, 2026. Its expiration date is unknown; automatic renewal is not configured.
 
 If publishing-state.json records status=publishing, do not delete it blindly.
 The script checks recent media and container state on the next run. If it cannot
@@ -82,7 +100,9 @@ account's notification settings; this patch does not configure email services.
 
 ## Validation completed locally
 
-- 10 mocked publisher tests: date boundaries, missing assets, successful publish,
+- 15 mocked publisher/scheduler tests: burst boundaries, nine unique slots,
+  return to daily, three-hour spacing, legacy journal compatibility, date
+  boundaries, missing assets, successful publish,
   duplicate skipping, failed journal writes, processing timeouts, recovery from
   ambiguous outcomes, authentication errors, JPEG fetching, and token redaction.
 - All 30 graphics rendered and checked for JPEG format, RGB mode, 1080 x 1350
