@@ -70,7 +70,8 @@
         "posting_key": "2026-09-27-afternoon",
         "sequence": 2
       },
-      "asset_path": "content/assets/autopilot/2026-09-27-afternoon.jpg"
+      "asset_path": "content/assets/autopilot/2026-09-27-afternoon.jpg",
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/2775ea2ee489d9dedfa694634b3ca2c669999fcc/content/assets/autopilot/2026-09-27-afternoon.jpg"
     }
   }
 }
