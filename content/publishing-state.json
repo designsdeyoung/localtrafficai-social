@@ -96,7 +96,8 @@
         "posting_key": "2026-09-27-evening",
         "sequence": 3
       },
-      "asset_path": "content/assets/autopilot/2026-09-27-evening.jpg"
+      "asset_path": "content/assets/autopilot/2026-09-27-evening.jpg",
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/1be7eb935a0df2be263d353b8c900c62df8ead59/content/assets/autopilot/2026-09-27-evening.jpg"
     }
   }
 }
