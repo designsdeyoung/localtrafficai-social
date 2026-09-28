@@ -148,7 +148,8 @@
         "posting_key": "2026-09-28-evening",
         "sequence": 6
       },
-      "asset_path": "content/assets/autopilot/2026-09-28-evening.jpg"
+      "asset_path": "content/assets/autopilot/2026-09-28-evening.jpg",
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/c8ca02b0e6458fea1346ba8aeedc7d6c83f989ff/content/assets/autopilot/2026-09-28-evening.jpg"
     }
   }
 }
