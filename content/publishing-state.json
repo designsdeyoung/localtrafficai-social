@@ -205,6 +205,28 @@
       "container_id": "18116889796908597",
       "media_id": "17959190994237774",
       "published_at": "2026-09-30T02:11:03.267Z"
+    },
+    "2026-09-30": {
+      "status": "prepared",
+      "created_at": "2026-09-30T18:28:06.271Z",
+      "post": {
+        "id": "evergreen-11",
+        "category": "Local trust",
+        "title": "Real team photos beat a blank page.",
+        "tips": [
+          "Show the people customers will meet.",
+          "Use clear, current photos with permission.",
+          "Explain what your team handles locally."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-09-30",
+        "caption": "Real team photos beat a blank page.\n\nShow the people customers will meet.\nUse clear, current photos with permission.\nExplain what your team handles locally.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 10,
+        "slot": "morning",
+        "posting_key": "2026-09-30",
+        "sequence": 10
+      },
+      "asset_path": "content/assets/autopilot/2026-09-30.jpg"
     }
   }
 }
