@@ -231,6 +231,28 @@
       "container_id": "18116981203908597",
       "media_id": "17864713422679294",
       "published_at": "2026-09-30T18:28:26.161Z"
+    },
+    "2026-10-01": {
+      "status": "prepared",
+      "created_at": "2026-10-01T18:55:25.239Z",
+      "post": {
+        "id": "evergreen-12",
+        "category": "Service area",
+        "title": "Be specific about where you work.",
+        "tips": [
+          "List the towns or neighborhoods you serve.",
+          "Explain any travel limits or service restrictions.",
+          "Avoid promising coverage you cannot deliver."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-01",
+        "caption": "Be specific about where you work.\n\nList the towns or neighborhoods you serve.\nExplain any travel limits or service restrictions.\nAvoid promising coverage you cannot deliver.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 11,
+        "slot": "morning",
+        "posting_key": "2026-10-01",
+        "sequence": 11
+      },
+      "asset_path": "content/assets/autopilot/2026-10-01.jpg"
     }
   }
 }
