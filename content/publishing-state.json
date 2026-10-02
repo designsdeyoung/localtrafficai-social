@@ -257,6 +257,28 @@
       "container_id": "18117118279908597",
       "media_id": "18084323162695848",
       "published_at": "2026-10-01T18:55:40.418Z"
+    },
+    "2026-10-02": {
+      "status": "prepared",
+      "created_at": "2026-10-02T18:28:34.711Z",
+      "post": {
+        "id": "evergreen-13",
+        "category": "Booking path",
+        "title": "Make the next step obvious.",
+        "tips": [
+          "Choose a clear action for each page.",
+          "Use a plain label like Request a quote.",
+          "Explain what happens after someone clicks."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-02",
+        "caption": "Make the next step obvious.\n\nChoose a clear action for each page.\nUse a plain label like Request a quote.\nExplain what happens after someone clicks.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 12,
+        "slot": "morning",
+        "posting_key": "2026-10-02",
+        "sequence": 12
+      },
+      "asset_path": "content/assets/autopilot/2026-10-02.jpg"
     }
   }
 }
