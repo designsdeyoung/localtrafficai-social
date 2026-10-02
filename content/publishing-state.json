@@ -259,7 +259,7 @@
       "published_at": "2026-10-01T18:55:40.418Z"
     },
     "2026-10-02": {
-      "status": "prepared",
+      "status": "container_created",
       "created_at": "2026-10-02T18:28:34.711Z",
       "post": {
         "id": "evergreen-13",
@@ -279,7 +279,8 @@
         "sequence": 12
       },
       "asset_path": "content/assets/autopilot/2026-10-02.jpg",
-      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/686e868879b2302a491488b0cd6fcb5fe9b68330/content/assets/autopilot/2026-10-02.jpg"
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/686e868879b2302a491488b0cd6fcb5fe9b68330/content/assets/autopilot/2026-10-02.jpg",
+      "container_id": "18117258946908597"
     }
   }
 }
