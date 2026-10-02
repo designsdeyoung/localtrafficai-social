@@ -278,7 +278,8 @@
         "posting_key": "2026-10-02",
         "sequence": 12
       },
-      "asset_path": "content/assets/autopilot/2026-10-02.jpg"
+      "asset_path": "content/assets/autopilot/2026-10-02.jpg",
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/686e868879b2302a491488b0cd6fcb5fe9b68330/content/assets/autopilot/2026-10-02.jpg"
     }
   }
 }
