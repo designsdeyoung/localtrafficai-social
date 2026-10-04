@@ -309,6 +309,28 @@
       "container_id": "18117396721908597",
       "media_id": "18229169935330012",
       "published_at": "2026-10-03T17:21:01.754Z"
+    },
+    "2026-10-04": {
+      "status": "prepared",
+      "created_at": "2026-10-04T17:37:16.780Z",
+      "post": {
+        "id": "evergreen-15",
+        "category": "Customer experience",
+        "title": "Your voicemail is part of marketing.",
+        "tips": [
+          "Call your business when nobody can answer.",
+          "State your name and how to leave a request.",
+          "Set a realistic expectation for the callback."
+        ],
+        "cta": "Explore LocalTrafficAI at the link in our bio.",
+        "date": "2026-10-04",
+        "caption": "Your voicemail is part of marketing.\n\nCall your business when nobody can answer.\nState your name and how to leave a request.\nSet a realistic expectation for the callback.\n\nExplore LocalTrafficAI at the link in our bio.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 14,
+        "slot": "morning",
+        "posting_key": "2026-10-04",
+        "sequence": 14
+      },
+      "asset_path": "content/assets/autopilot/2026-10-04.jpg"
     }
   }
 }
