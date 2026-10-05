@@ -335,6 +335,28 @@
       "container_id": "18117545779908597",
       "media_id": "18227051653336401",
       "published_at": "2026-10-04T17:37:26.144Z"
+    },
+    "2026-10-05": {
+      "status": "prepared",
+      "created_at": "2026-10-05T21:24:26.935Z",
+      "post": {
+        "id": "evergreen-16",
+        "category": "Business profile",
+        "title": "Does your listing describe your real work?",
+        "tips": [
+          "Read the services shown on your profile.",
+          "Remove outdated offers or details.",
+          "Add accurate descriptions of current services."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-05",
+        "caption": "Does your listing describe your real work?\n\nRead the services shown on your profile.\nRemove outdated offers or details.\nAdd accurate descriptions of current services.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 15,
+        "slot": "morning",
+        "posting_key": "2026-10-05",
+        "sequence": 15
+      },
+      "asset_path": "content/assets/autopilot/2026-10-05.jpg"
     }
   }
 }
