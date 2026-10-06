@@ -361,6 +361,28 @@
       "container_id": "18117692698908597",
       "media_id": "17885870253623106",
       "published_at": "2026-10-05T21:24:40.233Z"
+    },
+    "2026-10-06": {
+      "status": "prepared",
+      "created_at": "2026-10-06T18:55:51.545Z",
+      "post": {
+        "id": "evergreen-17",
+        "category": "Project stories",
+        "title": "Turn one finished job into useful content.",
+        "tips": [
+          "Start with the customer problem.",
+          "Explain the work in everyday language.",
+          "Show the result without invented numbers."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-06",
+        "caption": "Turn one finished job into useful content.\n\nStart with the customer problem.\nExplain the work in everyday language.\nShow the result without invented numbers.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 16,
+        "slot": "morning",
+        "posting_key": "2026-10-06",
+        "sequence": 16
+      },
+      "asset_path": "content/assets/autopilot/2026-10-06.jpg"
     }
   }
 }
