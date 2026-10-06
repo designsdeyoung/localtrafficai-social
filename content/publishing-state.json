@@ -363,7 +363,7 @@
       "published_at": "2026-10-05T21:24:40.233Z"
     },
     "2026-10-06": {
-      "status": "container_created",
+      "status": "publishing",
       "created_at": "2026-10-06T18:55:51.545Z",
       "post": {
         "id": "evergreen-17",
