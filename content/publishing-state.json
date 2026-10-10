@@ -465,6 +465,28 @@
       "container_id": "18118204762908597",
       "media_id": "18158920342501924",
       "published_at": "2026-10-09T18:51:26.377Z"
+    },
+    "2026-10-10": {
+      "status": "prepared",
+      "created_at": "2026-10-10T17:53:14.333Z",
+      "post": {
+        "id": "evergreen-21",
+        "category": "Lead quality",
+        "title": "Measure the appointment after the click.",
+        "tips": [
+          "Count inquiries from each marketing channel.",
+          "Track which inquiries become appointments.",
+          "Review the jobs that actually fit your business."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-10",
+        "caption": "Measure the appointment after the click.\n\nCount inquiries from each marketing channel.\nTrack which inquiries become appointments.\nReview the jobs that actually fit your business.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 20,
+        "slot": "morning",
+        "posting_key": "2026-10-10",
+        "sequence": 20
+      },
+      "asset_path": "content/assets/autopilot/2026-10-10.jpg"
     }
   }
 }
