@@ -517,6 +517,28 @@
       "container_id": "18118475182908597",
       "media_id": "17989380483071082",
       "published_at": "2026-10-11T18:07:49.095Z"
+    },
+    "2026-10-12": {
+      "status": "prepared",
+      "created_at": "2026-10-12T21:45:46.193Z",
+      "post": {
+        "id": "evergreen-23",
+        "category": "Contact details",
+        "title": "Small contact errors cost attention.",
+        "tips": [
+          "Compare your business name across key pages.",
+          "Check the phone number and email address.",
+          "Correct old links that lead customers elsewhere."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-12",
+        "caption": "Small contact errors cost attention.\n\nCompare your business name across key pages.\nCheck the phone number and email address.\nCorrect old links that lead customers elsewhere.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 22,
+        "slot": "morning",
+        "posting_key": "2026-10-12",
+        "sequence": 22
+      },
+      "asset_path": "content/assets/autopilot/2026-10-12.jpg"
     }
   }
 }
