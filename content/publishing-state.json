@@ -519,7 +519,7 @@
       "published_at": "2026-10-11T18:07:49.095Z"
     },
     "2026-10-12": {
-      "status": "publishing",
+      "status": "published",
       "created_at": "2026-10-12T21:45:46.193Z",
       "post": {
         "id": "evergreen-23",
@@ -540,7 +540,9 @@
       },
       "asset_path": "content/assets/autopilot/2026-10-12.jpg",
       "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/5661a9cafe7e657ddad1038c0d40d98fcc3c18d8/content/assets/autopilot/2026-10-12.jpg",
-      "container_id": "18118647907908597"
+      "container_id": "18118647907908597",
+      "media_id": "18121207945939933",
+      "published_at": "2026-10-12T21:45:58.802Z"
     }
   }
 }
