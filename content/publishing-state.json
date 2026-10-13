@@ -543,6 +543,28 @@
       "container_id": "18118647907908597",
       "media_id": "18121207945939933",
       "published_at": "2026-10-12T21:45:58.802Z"
+    },
+    "2026-10-13": {
+      "status": "prepared",
+      "created_at": "2026-10-13T19:53:27.869Z",
+      "post": {
+        "id": "evergreen-24",
+        "category": "Customer questions",
+        "title": "Explain what affects the quote.",
+        "tips": [
+          "List the details you need before pricing a job.",
+          "Explain the inspection or estimate process.",
+          "Avoid a fixed promise when the scope can change."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-13",
+        "caption": "Explain what affects the quote.\n\nList the details you need before pricing a job.\nExplain the inspection or estimate process.\nAvoid a fixed promise when the scope can change.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 23,
+        "slot": "morning",
+        "posting_key": "2026-10-13",
+        "sequence": 23
+      },
+      "asset_path": "content/assets/autopilot/2026-10-13.jpg"
     }
   }
 }
