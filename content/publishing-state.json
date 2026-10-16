@@ -621,6 +621,28 @@
       "container_id": "18119025925908597",
       "media_id": "18029918774752590",
       "published_at": "2026-10-15T17:48:15.515Z"
+    },
+    "2026-10-16": {
+      "status": "prepared",
+      "created_at": "2026-10-16T17:28:46.150Z",
+      "post": {
+        "id": "evergreen-27",
+        "category": "Local trust",
+        "title": "Make your business details easy to verify.",
+        "tips": [
+          "Keep your team and contact pages current.",
+          "Describe credentials accurately when relevant.",
+          "Use real project examples with permission."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-16",
+        "caption": "Make your business details easy to verify.\n\nKeep your team and contact pages current.\nDescribe credentials accurately when relevant.\nUse real project examples with permission.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 26,
+        "slot": "morning",
+        "posting_key": "2026-10-16",
+        "sequence": 26
+      },
+      "asset_path": "content/assets/autopilot/2026-10-16.jpg"
     }
   }
 }
