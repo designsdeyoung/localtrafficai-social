@@ -647,6 +647,28 @@
       "container_id": "18119170660908597",
       "media_id": "18205244563372737",
       "published_at": "2026-10-16T17:28:59.730Z"
+    },
+    "2026-10-17": {
+      "status": "prepared",
+      "created_at": "2026-10-17T16:28:49.298Z",
+      "post": {
+        "id": "evergreen-28",
+        "category": "Website cleanup",
+        "title": "Remove the promises you no longer offer.",
+        "tips": [
+          "Check old promotions and outdated prices.",
+          "Review service areas and appointment claims.",
+          "Update the pages before sending new visitors."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-17",
+        "caption": "Remove the promises you no longer offer.\n\nCheck old promotions and outdated prices.\nReview service areas and appointment claims.\nUpdate the pages before sending new visitors.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 27,
+        "slot": "morning",
+        "posting_key": "2026-10-17",
+        "sequence": 27
+      },
+      "asset_path": "content/assets/autopilot/2026-10-17.jpg"
     }
   }
 }
