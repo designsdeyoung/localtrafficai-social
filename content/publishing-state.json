@@ -649,7 +649,7 @@
       "published_at": "2026-10-16T17:28:59.730Z"
     },
     "2026-10-17": {
-      "status": "container_created",
+      "status": "publishing",
       "created_at": "2026-10-17T16:28:49.298Z",
       "post": {
         "id": "evergreen-28",
