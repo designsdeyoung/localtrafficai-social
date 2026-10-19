@@ -699,6 +699,28 @@
       "container_id": "18119492425908597",
       "media_id": "17912325300542352",
       "published_at": "2026-10-18T16:34:56.963Z"
+    },
+    "2026-10-19": {
+      "status": "prepared",
+      "created_at": "2026-10-19T19:21:47.261Z",
+      "post": {
+        "id": "evergreen-30",
+        "category": "Next steps",
+        "title": "Start with a clear picture of your visibility.",
+        "tips": [
+          "Check how your business appears online.",
+          "Make a short list of missing or incorrect details.",
+          "Prioritize the changes customers will notice."
+        ],
+        "cta": "Explore LocalTrafficAI at the link in our bio.",
+        "date": "2026-10-19",
+        "caption": "Start with a clear picture of your visibility.\n\nCheck how your business appears online.\nMake a short list of missing or incorrect details.\nPrioritize the changes customers will notice.\n\nExplore LocalTrafficAI at the link in our bio.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 29,
+        "slot": "morning",
+        "posting_key": "2026-10-19",
+        "sequence": 29
+      },
+      "asset_path": "content/assets/autopilot/2026-10-19.jpg"
     }
   }
 }
