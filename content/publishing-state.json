@@ -777,6 +777,28 @@
       "container_id": "18119939674908597",
       "media_id": "17960926116011504",
       "published_at": "2026-10-21T18:06:34.360Z"
+    },
+    "2026-10-22": {
+      "status": "prepared",
+      "created_at": "2026-10-22T18:01:32.282Z",
+      "post": {
+        "id": "evergreen-03",
+        "category": "Business profile",
+        "title": "Holiday hours need their own check.",
+        "tips": [
+          "Review your next holiday or planned closure.",
+          "Update your business listing before that day.",
+          "Match the hours on your website and voicemail."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-22",
+        "caption": "Holiday hours need their own check.\n\nReview your next holiday or planned closure.\nUpdate your business listing before that day.\nMatch the hours on your website and voicemail.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 2,
+        "slot": "morning",
+        "posting_key": "2026-10-22",
+        "sequence": 32
+      },
+      "asset_path": "content/assets/autopilot/2026-10-22.jpg"
     }
   }
 }
