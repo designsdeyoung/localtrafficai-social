@@ -803,6 +803,28 @@
       "container_id": "18120076810908597",
       "media_id": "18415152487086702",
       "published_at": "2026-10-22T18:01:55.047Z"
+    },
+    "2026-10-23": {
+      "status": "prepared",
+      "created_at": "2026-10-23T17:54:05.525Z",
+      "post": {
+        "id": "evergreen-04",
+        "category": "Local content",
+        "title": "Show the work you actually do.",
+        "tips": [
+          "Use a real photo from a recent job.",
+          "Explain the problem and what your team did.",
+          "Get permission before showing a customer or home."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-23",
+        "caption": "Show the work you actually do.\n\nUse a real photo from a recent job.\nExplain the problem and what your team did.\nGet permission before showing a customer or home.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 3,
+        "slot": "morning",
+        "posting_key": "2026-10-23",
+        "sequence": 33
+      },
+      "asset_path": "content/assets/autopilot/2026-10-23.jpg"
     }
   }
 }
