@@ -829,6 +829,28 @@
       "container_id": "18120215152908597",
       "media_id": "18110014025222042",
       "published_at": "2026-10-23T17:54:24.845Z"
+    },
+    "2026-10-24": {
+      "status": "prepared",
+      "created_at": "2026-10-24T16:39:06.811Z",
+      "post": {
+        "id": "evergreen-05",
+        "category": "Customer questions",
+        "title": "Answer the question before the call.",
+        "tips": [
+          "Write down a question customers ask every week.",
+          "Give a clear answer on the relevant service page.",
+          "Explain what needs an inspection or a quote."
+        ],
+        "cta": "Explore LocalTrafficAI at the link in our bio.",
+        "date": "2026-10-24",
+        "caption": "Answer the question before the call.\n\nWrite down a question customers ask every week.\nGive a clear answer on the relevant service page.\nExplain what needs an inspection or a quote.\n\nExplore LocalTrafficAI at the link in our bio.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 4,
+        "slot": "morning",
+        "posting_key": "2026-10-24",
+        "sequence": 34
+      },
+      "asset_path": "content/assets/autopilot/2026-10-24.jpg"
     }
   }
 }
