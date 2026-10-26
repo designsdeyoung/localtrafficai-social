@@ -881,6 +881,28 @@
       "container_id": "18120542926908597",
       "media_id": "18108777313959110",
       "published_at": "2026-10-25T17:05:00.382Z"
+    },
+    "2026-10-26": {
+      "status": "prepared",
+      "created_at": "2026-10-26T19:22:23.332Z",
+      "post": {
+        "id": "evergreen-07",
+        "category": "Service pages",
+        "title": "One clear page for each real service.",
+        "tips": [
+          "Describe the specific job you can help with.",
+          "Explain your process and the next step.",
+          "Use real examples instead of repeated filler."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-26",
+        "caption": "One clear page for each real service.\n\nDescribe the specific job you can help with.\nExplain your process and the next step.\nUse real examples instead of repeated filler.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 6,
+        "slot": "morning",
+        "posting_key": "2026-10-26",
+        "sequence": 36
+      },
+      "asset_path": "content/assets/autopilot/2026-10-26.jpg"
     }
   }
 }
