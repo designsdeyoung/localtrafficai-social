@@ -907,6 +907,28 @@
       "container_id": "18120751390908597",
       "media_id": "18137001307731917",
       "published_at": "2026-10-26T19:22:39.803Z"
+    },
+    "2026-10-27": {
+      "status": "prepared",
+      "created_at": "2026-10-27T18:43:21.627Z",
+      "post": {
+        "id": "evergreen-08",
+        "category": "Review routine",
+        "title": "Make asking for feedback a habit.",
+        "tips": [
+          "Ask customers for honest feedback after the job.",
+          "Send a simple link with a brief thank-you.",
+          "Respond thoughtfully when feedback needs attention."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-27",
+        "caption": "Make asking for feedback a habit.\n\nAsk customers for honest feedback after the job.\nSend a simple link with a brief thank-you.\nRespond thoughtfully when feedback needs attention.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 7,
+        "slot": "morning",
+        "posting_key": "2026-10-27",
+        "sequence": 37
+      },
+      "asset_path": "content/assets/autopilot/2026-10-27.jpg"
     }
   }
 }
