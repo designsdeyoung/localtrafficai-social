@@ -933,6 +933,28 @@
       "container_id": "18120911269908597",
       "media_id": "17923996281442106",
       "published_at": "2026-10-27T18:43:38.826Z"
+    },
+    "2026-10-28": {
+      "status": "prepared",
+      "created_at": "2026-10-28T18:52:57.347Z",
+      "post": {
+        "id": "evergreen-09",
+        "category": "Mobile check",
+        "title": "Try your own contact form.",
+        "tips": [
+          "Submit a test request from your phone.",
+          "Check that the message reaches the right inbox.",
+          "Confirm who follows up and how quickly."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-10-28",
+        "caption": "Try your own contact form.\n\nSubmit a test request from your phone.\nCheck that the message reaches the right inbox.\nConfirm who follows up and how quickly.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 8,
+        "slot": "morning",
+        "posting_key": "2026-10-28",
+        "sequence": 38
+      },
+      "asset_path": "content/assets/autopilot/2026-10-28.jpg"
     }
   }
 }
