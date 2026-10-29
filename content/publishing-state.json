@@ -959,6 +959,28 @@
       "container_id": "18121090879908597",
       "media_id": "18120911413745977",
       "published_at": "2026-10-28T18:53:09.686Z"
+    },
+    "2026-10-29": {
+      "status": "prepared",
+      "created_at": "2026-10-29T18:58:52.237Z",
+      "post": {
+        "id": "evergreen-10",
+        "category": "Lead tracking",
+        "title": "Know where the good calls start.",
+        "tips": [
+          "Ask new callers how they found you.",
+          "Record the answer with the inquiry.",
+          "Compare booked jobs, not just website visits."
+        ],
+        "cta": "Explore LocalTrafficAI at the link in our bio.",
+        "date": "2026-10-29",
+        "caption": "Know where the good calls start.\n\nAsk new callers how they found you.\nRecord the answer with the inquiry.\nCompare booked jobs, not just website visits.\n\nExplore LocalTrafficAI at the link in our bio.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 9,
+        "slot": "morning",
+        "posting_key": "2026-10-29",
+        "sequence": 39
+      },
+      "asset_path": "content/assets/autopilot/2026-10-29.jpg"
     }
   }
 }
