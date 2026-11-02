@@ -1063,6 +1063,28 @@
       "container_id": "18121723519908597",
       "media_id": "17971935716962439",
       "published_at": "2026-11-01T18:27:17.184Z"
+    },
+    "2026-11-02": {
+      "status": "prepared",
+      "created_at": "2026-11-02T22:21:16.115Z",
+      "post": {
+        "id": "evergreen-14",
+        "category": "Website cleanup",
+        "title": "Check the links that bring you leads.",
+        "tips": [
+          "Open the website link in your business profile.",
+          "Check the link in your Instagram bio.",
+          "Test your booking and contact pages."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-02",
+        "caption": "Check the links that bring you leads.\n\nOpen the website link in your business profile.\nCheck the link in your Instagram bio.\nTest your booking and contact pages.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 13,
+        "slot": "morning",
+        "posting_key": "2026-11-02",
+        "sequence": 43
+      },
+      "asset_path": "content/assets/autopilot/2026-11-02.jpg"
     }
   }
 }
