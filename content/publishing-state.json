@@ -1193,6 +1193,28 @@
       "container_id": "18122401360908597",
       "media_id": "17913786426475250",
       "published_at": "2026-11-06T19:58:39.405Z"
+    },
+    "2026-11-07": {
+      "status": "prepared",
+      "created_at": "2026-11-07T18:03:59.976Z",
+      "post": {
+        "id": "evergreen-19",
+        "category": "Website basics",
+        "title": "Your homepage should answer three questions.",
+        "tips": [
+          "What service do you provide?",
+          "Where do you provide it?",
+          "How does someone contact you?"
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-07",
+        "caption": "Your homepage should answer three questions.\n\nWhat service do you provide?\nWhere do you provide it?\nHow does someone contact you?\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 18,
+        "slot": "morning",
+        "posting_key": "2026-11-07",
+        "sequence": 48
+      },
+      "asset_path": "content/assets/autopilot/2026-11-07.jpg"
     }
   }
 }
