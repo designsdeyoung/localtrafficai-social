@@ -1240,7 +1240,8 @@
         "posting_key": "2026-11-08",
         "sequence": 49
       },
-      "asset_path": "content/assets/autopilot/2026-11-08.jpg"
+      "asset_path": "content/assets/autopilot/2026-11-08.jpg",
+      "image_url": "https://raw.githubusercontent.com/designsdeyoung/localtrafficai-social/76110bd8583b48a79ab548c3868c0ee7ba366d97/content/assets/autopilot/2026-11-08.jpg"
     }
   }
 }
