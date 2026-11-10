@@ -1271,6 +1271,28 @@
       "container_id": "18122852740908597",
       "media_id": "17982764499126253",
       "published_at": "2026-11-09T23:00:29.060Z"
+    },
+    "2026-11-10": {
+      "status": "prepared",
+      "created_at": "2026-11-10T20:29:09.168Z",
+      "post": {
+        "id": "evergreen-22",
+        "category": "Photo routine",
+        "title": "Keep your business photos current.",
+        "tips": [
+          "Check for old branding, vehicles, or uniforms.",
+          "Add useful photos of your current work.",
+          "Keep private customer details out of the shot."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-10",
+        "caption": "Keep your business photos current.\n\nCheck for old branding, vehicles, or uniforms.\nAdd useful photos of your current work.\nKeep private customer details out of the shot.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 21,
+        "slot": "morning",
+        "posting_key": "2026-11-10",
+        "sequence": 51
+      },
+      "asset_path": "content/assets/autopilot/2026-11-10.jpg"
     }
   }
 }
