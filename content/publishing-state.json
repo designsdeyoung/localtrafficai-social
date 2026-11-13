@@ -1351,7 +1351,7 @@
       "published_at": "2026-11-12T20:52:57.063Z"
     },
     "2026-11-13": {
-      "status": "container_created",
+      "status": "publishing",
       "created_at": "2026-11-13T20:30:38.954Z",
       "post": {
         "id": "evergreen-25",
