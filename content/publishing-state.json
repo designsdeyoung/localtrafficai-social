@@ -1505,6 +1505,28 @@
       "container_id": "18124250326908597",
       "media_id": "18134534308703028",
       "published_at": "2026-11-18T21:27:50.206Z"
+    },
+    "2026-11-19": {
+      "status": "prepared",
+      "created_at": "2026-11-19T21:38:30.347Z",
+      "post": {
+        "id": "evergreen-01",
+        "category": "Visibility check",
+        "title": "Can a customer find you today?",
+        "tips": [
+          "Search your business name on your phone.",
+          "Check the phone number, hours, and website link.",
+          "Fix one wrong detail before you buy more traffic."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-19",
+        "caption": "Can a customer find you today?\n\nSearch your business name on your phone.\nCheck the phone number, hours, and website link.\nFix one wrong detail before you buy more traffic.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 0,
+        "slot": "morning",
+        "posting_key": "2026-11-19",
+        "sequence": 60
+      },
+      "asset_path": "content/assets/autopilot/2026-11-19.jpg"
     }
   }
 }
