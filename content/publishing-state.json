@@ -1531,6 +1531,28 @@
       "container_id": "18124360357908597",
       "media_id": "18111998720219290",
       "published_at": "2026-11-19T21:38:46.254Z"
+    },
+    "2026-11-20": {
+      "status": "prepared",
+      "created_at": "2026-11-20T21:12:02.778Z",
+      "post": {
+        "id": "evergreen-02",
+        "category": "Website basics",
+        "title": "Your phone number should be easy to find.",
+        "tips": [
+          "Open your homepage on a small screen.",
+          "Make the call button visible without a long scroll.",
+          "Tap it and confirm it dials the right number."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-20",
+        "caption": "Your phone number should be easy to find.\n\nOpen your homepage on a small screen.\nMake the call button visible without a long scroll.\nTap it and confirm it dials the right number.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 1,
+        "slot": "morning",
+        "posting_key": "2026-11-20",
+        "sequence": 61
+      },
+      "asset_path": "content/assets/autopilot/2026-11-20.jpg"
     }
   }
 }
