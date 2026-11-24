@@ -1631,6 +1631,28 @@
       "container_id": "18124837843908597",
       "media_id": "18102004568412951",
       "published_at": "2026-11-24T00:57:58.880Z"
+    },
+    "2026-11-24": {
+      "status": "prepared",
+      "created_at": "2026-11-24T23:03:16.087Z",
+      "post": {
+        "id": "evergreen-06",
+        "category": "AI visibility",
+        "title": "Make your business easier to understand.",
+        "tips": [
+          "Say what you do in plain language.",
+          "Name the areas you actually serve.",
+          "Keep your contact details easy to find."
+        ],
+        "cta": "Save this and try it on your own business.",
+        "date": "2026-11-24",
+        "caption": "Make your business easier to understand.\n\nSay what you do in plain language.\nName the areas you actually serve.\nKeep your contact details easy to find.\n\nSave this and try it on your own business.\n\n#LocalTrafficAI #LocalBusiness #SmallBusinessMarketing",
+        "bank_index": 5,
+        "slot": "morning",
+        "posting_key": "2026-11-24",
+        "sequence": 65
+      },
+      "asset_path": "content/assets/autopilot/2026-11-24.jpg"
     }
   }
 }
